@@ -16,21 +16,27 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 public class CardController {
 
-    @ResponseBody
-    @RequestMapping(value = "/CARD/{category}", method = RequestMethod.GET)
-    public JSONObject getMetaData(@PathVariable String category) throws FileNotFoundException {
-        JSONObject result = MetaData.getMateData(category);
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/CARD/{category}", method = RequestMethod.GET)
+//    public JSONObject getMetaData(@PathVariable String category) throws FileNotFoundException {
+//        JSONObject result = MetaData.getMateData(category);
+//        return result;
+//    }
 
     @ResponseBody
-    @RequestMapping(value = "/symbol={symbol}?uri={uri}?uuid={uuid}", method = RequestMethod.GET)
-    public JSONObject getCryptoKittyMetaData(@PathVariable String symbol, @PathVariable String uri, @PathVariable String uuid) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public JSONObject getCryptoKittyMetaData(@RequestParam String symbol, @RequestParam String uri, @RequestParam String uuid) {
         String[] strList = uri.split("/");
-        String gene = strList[strList.length - 1];
-        ParseCryptoKitty parseCryptoKitty = new ParseCryptoKitty(symbol, gene);
-        String soldier = parseCryptoKitty.getSoldier();
-        JSONObject result = MetaData.getMateData(soldier);
+        JSONObject result;
+        String category = strList[strList.length - 1];
+        if (symbol.equals("CARD")) {
+            result = MetaData.getMateData(category);
+        }
+        else {
+            ParseCryptoKitty parseCryptoKitty = new ParseCryptoKitty(symbol, category);
+            String soldier = parseCryptoKitty.getSoldier();
+            result = MetaData.getMateData(soldier);
+        }
         return result;
     }
 }
