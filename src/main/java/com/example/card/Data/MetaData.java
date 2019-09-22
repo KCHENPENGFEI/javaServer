@@ -19,12 +19,21 @@ public class MetaData  {
         List<String> soldiers = Arrays.asList("infancy", "spearman", "shieldman", "archer", "cavalry");
         List<JSONObject> data = new ArrayList<>();
 
-        String infancyPath = "/Users/chenpengfei/Documents/OasisHackathon/cardGame/javaServer/src/main/resources/static/assets/infancy.png";
-        String spearmanPath = "/Users/chenpengfei/Documents/OasisHackathon/cardGame/javaServer/src/main/resources/static/assets/spearman.png";
-        String shieldmanPath = "/Users/chenpengfei/Documents/OasisHackathon/cardGame/javaServer/src/main/resources/static/assets/shieldman.png";
-        String archerPath = "/Users/chenpengfei/Documents/OasisHackathon/cardGame/javaServer/src/main/resources/static/assets/archer.png";
-        String cavalryPath = "/Users/chenpengfei/Documents/OasisHackathon/cardGame/javaServer/src/main/resources/static/assets/cavalry.png";
-//        File file = ResourceUtils.getFile("classpath:static/assets/" + name + ".png");
+        String infancyPath = null;
+        String spearmanPath = null;
+        String shieldmanPath = null;
+        String archerPath = null;
+        String cavalryPath = null;
+
+        try {
+            infancyPath = ResourceUtils.getFile("classpath:static/assets/infancy.png").getPath();
+            spearmanPath = ResourceUtils.getFile("classpath:static/assets/spearman.png").getPath();
+            shieldmanPath = ResourceUtils.getFile("classpath:static/assets/shieldman.png").getPath();
+            archerPath = ResourceUtils.getFile("classpath:static/assets/archer.png").getPath();
+            cavalryPath = ResourceUtils.getFile("classpath:static/assets/cavalry.png").getPath();
+        } catch (IOException ee) {
+            ee.printStackTrace();
+        }
         List<String> filePath = Arrays.asList(infancyPath, spearmanPath, shieldmanPath, archerPath, cavalryPath);
         List<String> encodeBase64 = new ArrayList<>();
 
