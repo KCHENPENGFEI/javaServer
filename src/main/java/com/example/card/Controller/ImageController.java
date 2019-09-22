@@ -5,10 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -17,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/image")
 public class ImageController {
     @RequestMapping(value = "/get/{name}",produces = MediaType.IMAGE_PNG_VALUE)
@@ -25,4 +23,6 @@ public class ImageController {
         File file = ResourceUtils.getFile("classpath:static/assets/" + name + ".png");
         return ImageIO.read(new FileInputStream(new File(file.getPath())));
     }
+
+
 }

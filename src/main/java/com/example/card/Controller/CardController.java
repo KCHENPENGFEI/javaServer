@@ -24,10 +24,14 @@ public class CardController {
 //    }
 
     @ResponseBody
+    @CrossOrigin
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public JSONObject getCryptoKittyMetaData(@RequestParam String symbol, @RequestParam String uri, @RequestParam String uuid) {
         String[] strList = uri.split("/");
         JSONObject result;
+//        System.out.println(symbol);
+//        System.out.println(uri);
+//        System.out.println(uuid);
         String category = strList[strList.length - 1];
         if (symbol.equals("CARD")) {
             result = MetaData.getMateData(category);

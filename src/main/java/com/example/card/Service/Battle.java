@@ -54,7 +54,9 @@ public class Battle {
                 // 己方获胜
                 JSONObject jsonObject = new JSONObject()
                         .element("result", "win")
-                        .element("opponent", opponentSoldier);
+                        .element("opponentSoldier", opponentSoldier)
+                        .element("opponentAddress", opponentAddress)
+                        .element("address", address);
                 try {
                     sendMsg(session, jsonObject.toString());
                 } catch (Exception e) {
@@ -63,7 +65,9 @@ public class Battle {
                 Session opponentSession = playersSession.get(opponentAddress);
                 JSONObject jsonObject1 = new JSONObject()
                         .element("result", "lose")
-                        .element("opponent", soldier);
+                        .element("opponentSoldier", soldier)
+                        .element("opponentAddress", address)
+                        .element("address", opponentAddress);
                 try {
                     sendMsg(opponentSession, jsonObject1.toString());
                 } catch (Exception e) {
@@ -74,7 +78,9 @@ public class Battle {
                 // 对方获胜
                 JSONObject jsonObject = new JSONObject()
                         .element("result", "lose")
-                        .element("opponent", opponentSoldier);
+                        .element("opponentSoldier", opponentSoldier)
+                        .element("opponentAddress", opponentAddress)
+                        .element("address", address);
                 try {
                     sendMsg(session, jsonObject.toString());
                 } catch (Exception e) {
@@ -83,7 +89,9 @@ public class Battle {
                 Session opponentSession = playersSession.get(opponentAddress);
                 JSONObject jsonObject1 = new JSONObject()
                         .element("result", "win")
-                        .element("opponent", soldier);
+                        .element("opponentSoldier", soldier)
+                        .element("opponentAddress", address)
+                        .element("address", opponentAddress);
                 try {
                     sendMsg(opponentSession, jsonObject1.toString());
                 } catch (Exception e) {
@@ -93,7 +101,7 @@ public class Battle {
             else {
                 JSONObject jsonObject = new JSONObject()
                         .element("result", "tie")
-                        .element("opponent", soldier);
+                        .element("opponentSoldier", soldier);
                 Session opponentSession = playersSession.get(opponentAddress);
                 try {
                     sendMsg(opponentSession, jsonObject.toString());
