@@ -45,7 +45,7 @@ public class Battle {
         System.out.println(playersSession);
         System.out.println(playersPick);
 
-        if (playersSession.size() == 2) {
+        if (playersSession.size() == 2 && playersPick.size() == 2) {
             //判断结果
             String opponentAddress = opponent.get(address);
             String opponentSoldier = playersPick.get(opponentAddress);
@@ -70,6 +70,8 @@ public class Battle {
                         .element("address", opponentAddress);
                 try {
                     sendMsg(opponentSession, jsonObject1.toString());
+                    playersPick.clear();
+                    opponent.clear();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -94,6 +96,8 @@ public class Battle {
                         .element("address", opponentAddress);
                 try {
                     sendMsg(opponentSession, jsonObject1.toString());
+                    playersPick.clear();
+                    opponent.clear();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -103,6 +107,8 @@ public class Battle {
                         .element("result", "tie")
                         .element("opponentSoldier", soldier);
                 Session opponentSession = playersSession.get(opponentAddress);
+                playersPick.clear();
+                opponent.clear();
                 try {
                     sendMsg(opponentSession, jsonObject.toString());
                     sendMsg(session, jsonObject.toString());
@@ -110,6 +116,8 @@ public class Battle {
                     e.printStackTrace();
                 }
             }
+            // 删除soldier
+//            playersPick.clear();
         }
     }
 

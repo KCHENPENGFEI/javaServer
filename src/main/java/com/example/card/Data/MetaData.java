@@ -48,7 +48,7 @@ public class MetaData  {
                 inputStream = new FileInputStream(imageFile);
                 imageData = new byte[inputStream.available()];
                 inputStream.read(imageData);
-                encode = encoder.encode(imageData);
+                encode = "data:image/png;base64," + encoder.encode(imageData);
                 encodeBase64.add(encode);
             } catch (IOException e) {
                 e.printStackTrace();
