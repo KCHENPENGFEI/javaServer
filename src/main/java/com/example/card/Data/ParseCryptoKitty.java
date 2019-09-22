@@ -6,22 +6,22 @@ public class ParseCryptoKitty {
 
     public ParseCryptoKitty(String symbol, String gene) {
         assert (symbol.equals("KCARD"));
-        String first = (String) gene.subSequence(0, 1);
-        if (first.compareTo("a") >= 0 && first.compareTo("e") <= 0) {
+        String first = (String) gene.subSequence(2, 4);
+        if (first.compareTo("a") >= 0 && first.compareTo("f") <= 0) {
             // 小于
-            soldier = "infancy";
+            soldier = "cavalry";
         }
-        else if (first.compareTo("f") >= 0 && first.compareTo("j") <= 0) {
+        else if (first.compareTo("g") >= 0 && first.compareTo("l") <= 0) {
             soldier = "spearman";
         }
-        else if (first.compareTo("k") >= 0 && first.compareTo("p") <= 0) {
+        else if (first.compareTo("m") >= 0 && first.compareTo("s") <= 0) {
             soldier = "shieldman";
         }
-        else if (first.compareTo("q") >= 0 && first.compareTo("v") <= 0) {
+        else if (first.compareTo("t") >= 0 && first.compareTo("z") <= 0) {
             soldier = "archer";
         }
         else {
-            soldier = "cavalry";
+            soldier = "infancy";
         }
     }
 
